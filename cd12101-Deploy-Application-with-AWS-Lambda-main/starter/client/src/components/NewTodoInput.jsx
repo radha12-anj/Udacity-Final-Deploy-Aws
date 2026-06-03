@@ -22,9 +22,12 @@ export function NewTodoInput({ onNewTodo }) {
       })
       onNewTodo(createdTodo)
     } catch (e) {
-      console.log('Failed to created a new TODO', e)
-      alert('Todo creation failed')
-    }
+         console.log('FULL ERROR:', e)
+         console.log('STATUS:', e.response?.status)
+         console.log('DATA:', e.response?.data)
+         console.log('MESSAGE:', e.message)
+         alert(`Todo creation failed: ${e.message}`)
+        }
   }
 
   return (

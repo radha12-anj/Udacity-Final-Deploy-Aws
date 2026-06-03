@@ -8,7 +8,9 @@ const s3Client = new S3Client({})
 export async function getUploadUrl(todoId) {
   const command = new PutObjectCommand({
     Bucket: bucketName,
-    Key: todoId
+    Key: todoId,
+
+    ContentType: "image/png"
   })
 
   return await getSignedUrl(s3Client, command, {

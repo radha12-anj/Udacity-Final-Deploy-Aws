@@ -67,5 +67,9 @@ export async function getUploadUrl(idToken, todoId) {
 }
 
 export async function uploadFile(uploadUrl, file) {
-  await Axios.put(uploadUrl, file)
+  await Axios.put(uploadUrl, file, {
+    headers: {
+      "Content-Type": file.type
+    }
+  })
 }

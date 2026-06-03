@@ -12,6 +12,20 @@ provider:
   stage: ${opt:stage, 'dev'}
   region: ${opt:region, 'us-east-1'}
 
+  tracing:
+    lambda: true
+    apiGateway: true
+
+
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - xray:PutTraceSegments
+            - xray:PutTelemetryRecords
+          Resource: "*"
+
   environment:
     TODOS_TABLE: Todos-${self:provider.stage}-${aws:accountId}-anji391842816krisighr
     TODOS_CREATED_AT_INDEX: CreatedAtIndex-${aws:accountId}-gidnxaofuobd
